@@ -5,6 +5,13 @@ import PropTypes from 'prop-types';
 class ContactForm extends Component {
   static propTypes = {
     addContact: PropTypes.func,
+    contacts: PropTypes.arrayOf(
+      PropTypes.shape({
+        name: PropTypes.string,
+        number: PropTypes.string,
+        id: PropTypes.string,
+      }),
+    ),
   };
 
   state = {
@@ -23,6 +30,14 @@ class ContactForm extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
+    //find
+    const isContactExisting = this.props.contacts.find(
+      contact => contact.name === this.state.name,
+    );
+    if (isContactExisting) {
+      alert(`${this.state.name} is already in contacts.`);
+      return;
+    }
     const newContact = {
       id: uuidv4(),
       name: this.state.name,

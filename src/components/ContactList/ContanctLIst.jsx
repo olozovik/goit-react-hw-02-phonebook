@@ -1,6 +1,11 @@
 import PropTypes from 'prop-types';
 
-function ContactLIst({ contacts, filteredContacts, filterValue }) {
+function ContactLIst({
+  contacts,
+  filteredContacts,
+  filterValue,
+  deleteContact,
+}) {
   const renderContacts =
     filteredContacts.length > 0 ? filteredContacts : contacts;
 
@@ -11,13 +16,20 @@ function ContactLIst({ contacts, filteredContacts, filterValue }) {
           return (
             <li key={contact.name}>
               {contact.name}: {contact.number}
+              <button
+                type={'button'}
+                data-name={contact.name}
+                onClick={deleteContact}
+              >
+                Delete
+              </button>
             </li>
           );
         })}
       </ul>
     );
   } else {
-    return <p>Error!!!!</p>;
+    return <p>There is not a contact with this name.</p>;
   }
 }
 

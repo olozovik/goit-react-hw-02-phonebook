@@ -6,8 +6,8 @@ import { Filter } from './components/Filter/Filter';
 class App extends Component {
   state = {
     contacts: [
-      { name: 'John Walsh', id: 5, number: '555-55-54' },
-      { name: 'Sofie Terner', id: 6, number: '555-55-55' },
+      { name: 'John Walsh', id: '5', number: '555-55-54' },
+      { name: 'Sofie Terner', id: '6', number: '555-55-55' },
     ],
     filter: '',
   };
@@ -19,6 +19,22 @@ class App extends Component {
       return {
         contacts: newContacts,
       };
+    });
+  };
+
+  deleteContact = e => {
+    let index = null;
+    this.state.contacts.forEach((contact, idx) => {
+      if (contact.name === e.target.dataset.name) {
+        index = idx;
+      }
+    });
+    console.log(index);
+    this.setState(prevState => {
+      const newContactsList = [...this.state.contacts];
+      newContactsList.splice(index, 1);
+      console.log(newContactsList);
+      return { contacts: newContactsList };
     });
   };
 
@@ -48,7 +64,8 @@ class App extends Component {
         <ContactLIst
           contacts={this.state.contacts}
           filteredContacts={this.filteredContacts}
-          // filterValue={this.state.filter}
+          filterValue={this.state.filter}
+          deleteContact={this.deleteContact}
         />
       </div>
     );
