@@ -1,10 +1,11 @@
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
+import { Label } from './Filter.styled';
 
 function Filter({ filterValue, findContacts }) {
   const inputId = uuidv4();
   return (
-    <label htmlFor="inputId">
+    <Label htmlFor="inputId">
       Find contacts by name
       <input
         id={inputId}
@@ -12,7 +13,7 @@ function Filter({ filterValue, findContacts }) {
         value={filterValue}
         onChange={findContacts}
       />
-    </label>
+    </Label>
   );
 }
 

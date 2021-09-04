@@ -1,6 +1,7 @@
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
+import { Form } from './ContactForm.styled';
 
 class ContactForm extends Component {
   static propTypes = {
@@ -52,7 +53,7 @@ class ContactForm extends Component {
 
   render() {
     return (
-      <form autoComplete={'off'} onSubmit={this.handleOnSubmit}>
+      <Form autoComplete={'off'} onSubmit={this.handleOnSubmit}>
         <label htmlFor={this.nameInputId}>
           Name
           <input
@@ -80,7 +81,7 @@ class ContactForm extends Component {
           />
         </label>
         <button type={'submit'}>Add contact</button>
-      </form>
+      </Form>
     );
   }
 }

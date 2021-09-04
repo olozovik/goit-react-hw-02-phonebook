@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import { List } from './ContactList.styled';
 
 function ContactLIst({
   contacts,
@@ -14,7 +15,7 @@ function ContactLIst({
     (filterValue && filteredContacts.length > 0)
   ) {
     return (
-      <ul>
+      <List>
         {renderContacts.map(contact => {
           return (
             <li key={contact.name}>
@@ -29,7 +30,7 @@ function ContactLIst({
             </li>
           );
         })}
-      </ul>
+      </List>
     );
   } else if (filterValue) {
     return <p>There are no contacts with this name.</p>;

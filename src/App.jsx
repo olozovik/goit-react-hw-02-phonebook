@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import { ContactForm } from './components/ContactForm/ContactForm';
-import { ContactLIst } from './components/ContactList/ContanctLIst';
+import { ContactLIst } from './components/ContactList/ContactList';
 import { Filter } from './components/Filter/Filter';
+import { Wrapper } from 'components/Wrapper/Wrapper';
 
 class App extends Component {
   state = {
@@ -48,7 +49,7 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <Wrapper>
         <h1>Phonebook</h1>
         <ContactForm
           addContact={this.addContact}
@@ -65,7 +66,7 @@ class App extends Component {
           filterValue={this.state.filter}
           deleteContact={this.deleteContact}
         />
-      </div>
+      </Wrapper>
     );
   }
 }
