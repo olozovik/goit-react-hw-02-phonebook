@@ -29,11 +29,9 @@ class App extends Component {
         index = idx;
       }
     });
-    console.log(index);
     this.setState(prevState => {
       const newContactsList = [...this.state.contacts];
       newContactsList.splice(index, 1);
-      console.log(newContactsList);
       return { contacts: newContactsList };
     });
   };
@@ -58,7 +56,7 @@ class App extends Component {
         />
         <h2>Contacts</h2>
         <Filter
-          inputValue={this.state.filter}
+          filterValue={this.state.filter}
           findContacts={this.findContacts}
         />
         <ContactLIst

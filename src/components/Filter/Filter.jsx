@@ -1,7 +1,7 @@
 import { v4 as uuidv4 } from 'uuid';
 import PropTypes from 'prop-types';
 
-function Filter({ inputValue, findContacts }) {
+function Filter({ filterValue, findContacts }) {
   const inputId = uuidv4();
   return (
     <label htmlFor="inputId">
@@ -9,7 +9,7 @@ function Filter({ inputValue, findContacts }) {
       <input
         id={inputId}
         type="text"
-        value={inputValue}
+        value={filterValue}
         onChange={findContacts}
       />
     </label>
@@ -17,7 +17,7 @@ function Filter({ inputValue, findContacts }) {
 }
 
 Filter.propTypes = {
-  inputValue: PropTypes.string,
+  filterValue: PropTypes.string,
   findContacts: PropTypes.func,
 };
 
