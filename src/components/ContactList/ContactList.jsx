@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { List } from './ContactList.styled';
 
-function ContactLIst({ contacts, filterValue, deleteContact }) {
+function ContactList({ contacts, filterValue, deleteContact }) {
   let contactsToRender = contacts;
   if (filterValue) {
     contactsToRender = contacts.filter(contact =>
@@ -19,15 +19,11 @@ function ContactLIst({ contacts, filterValue, deleteContact }) {
 
   return (
     <List>
-      {contactsToRender.map(contact => {
+      {contactsToRender.map(({ name, number }) => {
         return (
-          <li key={contact.name}>
-            {contact.name}: {contact.number}
-            <button
-              type={'button'}
-              data-name={contact.name}
-              onClick={deleteContact}
-            >
+          <li key={name}>
+            {name}: {number}
+            <button type={'button'} data-name={name} onClick={deleteContact}>
               Delete
             </button>
           </li>
@@ -37,9 +33,9 @@ function ContactLIst({ contacts, filterValue, deleteContact }) {
   );
 }
 
-export { ContactLIst };
+export { ContactList };
 
-ContactLIst.propTypes = {
+ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string,

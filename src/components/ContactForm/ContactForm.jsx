@@ -31,14 +31,16 @@ class ContactForm extends Component {
 
   handleOnSubmit = e => {
     e.preventDefault();
-    //find
+
     const isContactExisting = this.props.contacts.find(
       contact => contact.name.toLowerCase() === this.state.name.toLowerCase(),
     );
+
     if (isContactExisting) {
       alert(`${this.state.name} is already in contacts.`);
       return;
     }
+
     const newContact = {
       id: uuidv4(),
       name: this.state.name,

@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { ContactForm } from './components/ContactForm/ContactForm';
-import { ContactLIst } from './components/ContactList/ContactList';
+import { ContactList } from './components/ContactList/ContactList';
 import { Filter } from './components/Filter/Filter';
 import { Wrapper } from 'components/Wrapper/Wrapper';
 
@@ -24,17 +24,10 @@ class App extends Component {
   };
 
   deleteContact = e => {
-    let index = null;
-    this.state.contacts.forEach((contact, idx) => {
-      if (contact.name === e.target.dataset.name) {
-        index = idx;
-      }
+    const newContactsList = this.state.contacts.filter(contact => {
+      return contact.name !== e.target.dataset.name;
     });
-    this.setState(prevState => {
-      const newContactsList = [...this.state.contacts];
-      newContactsList.splice(index, 1);
-      return { contacts: newContactsList };
-    });
+    this.setState({ contacts: newContactsList });
   };
 
   findContacts = e => {
@@ -43,23 +36,19 @@ class App extends Component {
   };
 
   render() {
+    const { contacts, filter } = this.state;
+    const { addContact, findContacts, deleteContact } = this;
+
     return (
       <Wrapper>
         <h1>Phonebook</h1>
-        <ContactForm
-          addContact={this.addContact}
-          contacts={this.state.contacts}
-        />
+        <ContactForm addContact={addContact} contacts={contacts} />
         <h2>Contacts</h2>
-        <Filter
-          filterValue={this.state.filter}
-          findContacts={this.findContacts}
-        />
-        <ContactLIst
-          contacts={this.state.contacts}
-          // filteredContacts={this.filteredContacts}
-          filterValue={this.state.filter}
-          deleteContact={this.deleteContact}
+        <Filter filterValue={filter} findContacts={findContacts} />
+        <ContactList
+          contacts={contacts}
+          filterValue={filter}
+          deleteContact={deleteContact}
         />
       </Wrapper>
     );
