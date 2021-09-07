@@ -33,7 +33,7 @@ class ContactForm extends Component {
     e.preventDefault();
     //find
     const isContactExisting = this.props.contacts.find(
-      contact => contact.name === this.state.name,
+      contact => contact.name.toLowerCase() === this.state.name.toLowerCase(),
     );
     if (isContactExisting) {
       alert(`${this.state.name} is already in contacts.`);
