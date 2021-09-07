@@ -1,25 +1,10 @@
 import PropTypes from 'prop-types';
 import { List } from './ContactList.styled';
 
-function ContactList({ contacts, filterValue, deleteContact }) {
-  let contactsToRender = contacts;
-  if (filterValue) {
-    contactsToRender = contacts.filter(contact =>
-      contact.name.toLowerCase().includes(filterValue.toLowerCase()),
-    );
-  }
-
-  if (filterValue && contactsToRender.length === 0) {
-    return <p>There are no contacts with this name.</p>;
-  }
-
-  if (!filterValue && contactsToRender.length === 0) {
-    return <p>There are no contacts here.</p>;
-  }
-
+function ContactList({ contacts, deleteContact }) {
   return (
     <List>
-      {contactsToRender.map(({ name, number }) => {
+      {contacts.map(({ name, number }) => {
         return (
           <li key={name}>
             {name}: {number}
@@ -43,6 +28,5 @@ ContactList.propTypes = {
       number: PropTypes.string,
     }),
   ),
-  filterValue: PropTypes.string,
   deleteContact: PropTypes.func,
 };

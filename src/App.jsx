@@ -39,6 +39,13 @@ class App extends Component {
     const { contacts, filter } = this.state;
     const { addContact, findContacts, deleteContact } = this;
 
+    let contactsToRender = contacts;
+    if (filter) {
+      contactsToRender = contacts.filter(contact =>
+        contact.name.toLowerCase().includes(filter.toLowerCase()),
+      );
+    }
+
     return (
       <Wrapper>
         <h1>Phonebook</h1>
@@ -46,10 +53,16 @@ class App extends Component {
         <h2>Contacts</h2>
         <Filter filterValue={filter} findContacts={findContacts} />
         <ContactList
-          contacts={contacts}
+          contacts={contactsToRender}
           filterValue={filter}
           deleteContact={deleteContact}
         />
+        {filter && contactsToRender.length === 0 && (
+          <p>There are no contacts with this name.</p>
+        )}
+        {!filter && contactsToRender.length === 0 && (
+          <p>There are no contacts here.</p>
+        )}
       </Wrapper>
     );
   }
