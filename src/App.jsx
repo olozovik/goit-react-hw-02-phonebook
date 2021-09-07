@@ -37,14 +37,9 @@ class App extends Component {
     });
   };
 
-  filteredContacts = [];
-
   findContacts = e => {
     const value = e.target.value;
     this.setState({ filter: value });
-    this.filteredContacts = this.state.contacts.filter(contact =>
-      contact.name.toLowerCase().includes(value.toLowerCase()),
-    );
   };
 
   render() {
@@ -62,7 +57,7 @@ class App extends Component {
         />
         <ContactLIst
           contacts={this.state.contacts}
-          filteredContacts={this.filteredContacts}
+          // filteredContacts={this.filteredContacts}
           filterValue={this.state.filter}
           deleteContact={this.deleteContact}
         />
