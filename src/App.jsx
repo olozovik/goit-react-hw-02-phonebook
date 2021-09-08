@@ -30,28 +30,27 @@ class App extends Component {
     this.setState({ contacts: newContactsList });
   };
 
-  findContacts = e => {
+  findContact = e => {
     const value = e.target.value;
     this.setState({ filter: value });
   };
 
   render() {
     const { contacts, filter } = this.state;
-    const { addContact, findContacts, deleteContact } = this;
+    const { addContact, findContact, deleteContact } = this;
 
-    let contactsToRender = contacts;
-    if (filter) {
-      contactsToRender = contacts.filter(contact =>
-        contact.name.toLowerCase().includes(filter.toLowerCase()),
-      );
-    }
+    const contactsToRender = !filter
+      ? contacts
+      : contacts.filter(contact =>
+          contact.name.toLowerCase().includes(filter.toLowerCase()),
+        );
 
     return (
       <Wrapper>
         <h1>Phonebook</h1>
         <ContactForm addContact={addContact} contacts={contacts} />
         <h2>Contacts</h2>
-        <Filter filterValue={filter} findContacts={findContacts} />
+        <Filter filterValue={filter} findContact={findContact} />
         <ContactList
           contacts={contactsToRender}
           filterValue={filter}
