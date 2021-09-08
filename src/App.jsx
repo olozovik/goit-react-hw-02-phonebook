@@ -6,10 +6,7 @@ import { Wrapper } from 'components/Wrapper/Wrapper';
 
 class App extends Component {
   state = {
-    contacts: [
-      { name: 'John Walsh', id: '5', number: '555-55-54' },
-      { name: 'Sofie Terner', id: '6', number: '555-55-55' },
-    ],
+    contacts: [],
     filter: '',
   };
 
